@@ -2,9 +2,8 @@ Labs
 ############################################
 
 
-These are my personal notes that are a perpetual work in progress.  I use these notes to study for various 
-industry exams, and I also use them as references during engagements.  These notes work for me, they connect ideas 
-in my head based on my experience/knowledge and will probably be absolutely worthless to anyone else. 
+These labs have been created to practice your cyber security knowledge in a safe environment.  This is a perpetual work in progress.  I have created these labs to study for various 
+industry exams.  If you find any errors, please feel free to create a pull request with your suggested changes at my repository at https://github.com/jjamieson1/celestialtech-labs
 
 .. toctree::
    :maxdepth: 1
