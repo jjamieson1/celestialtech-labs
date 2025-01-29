@@ -1,0 +1,239 @@
+Running Sphinx v8.1.3
+loading translations [en]... done
+loading pickled environment... done
+myst v4.0.0: MdParserConfig(commonmark_only=False, gfm_only=False, enable_extensions=set(), disable_syntax=[], all_links_external=False, links_external_new_tab=False, url_schemes=('http', 'https', 'mailto', 'ftp'), ref_domains=None, fence_as_directive=set(), number_code_blocks=[], title_to_header=False, heading_anchors=0, heading_slug_func=None, html_meta={}, footnote_sort=True, footnote_transition=True, words_per_minute=200, substitutions={}, linkify_fuzzy_links=True, dmath_allow_labels=True, dmath_allow_space=True, dmath_allow_digits=True, dmath_double_inline=False, update_mathjax=True, mathjax_classes='tex2jax_process|mathjax_process|math|output_area', enable_checkboxes=False, suppress_warnings=[], highlight_code_blocks=True)
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [linkcheck]: targets for 219 source files that are out of date
+updating environment: 0 added, 0 changed, 0 removed
+reading sources... 
+looking for now-outdated files... none found
+preparing documents... done
+copying assets... 
+copying assets: done
+writing output... [  0%] CDSA/Certified Defensive Security Analyst
+writing output... [  1%] CDSA/Incident Handling Process
+writing output... [  1%] CDSA/JavaScript Deobfuscation
+writing output... [  2%] CDSA/Security Monitoring and SIEM Fundamentals
+writing output... [  2%] CDSA/Windows Event Logs and Finding Evil
+writing output... [  3%] CPTS/Certified Penetration Tester
+writing output... [  3%] CPTS/Initial Access/Active Directory Enumeration Attacks
+writing output... [  4%] CPTS/Initial Access/Attacking Common Services
+writing output... [  4%] CPTS/Initial Access/DNS Tunneling with Dnscat2
+writing output... [  5%] CPTS/Initial Access/Dynamic Port Forwarding with SSH and SOCKS Tunneling
+writing output... [  5%] CPTS/Initial Access/File Inclusion
+writing output... [  5%] CPTS/Initial Access/ICMP Tunneling with SOCKS
+writing output... [  6%] CPTS/Initial Access/LLMNR NBT-NS Poisoning from Linux
+writing output... [  6%] CPTS/Initial Access/Meterpreter Tunneling and Port Forwarding
+writing output... [  7%] CPTS/Initial Access/Password Attacks
+writing output... [  7%] CPTS/Initial Access/Port Forwarding with Windows Netsh
+writing output... [  8%] CPTS/Initial Access/RDP and SOCKS Tunneling with SocksOverRDP
+writing output... [  8%] CPTS/Initial Access/Remote Password Attacks
+writing output... [  9%] CPTS/Initial Access/Remote-Reverse Port Forwarding with SSH
+writing output... [  9%] CPTS/Initial Access/SOCKS5 Tunneling with Chisel
+writing output... [ 10%] CPTS/Initial Access/SSH Forwarding
+writing output... [ 10%] CPTS/Initial Access/SSH Pivoting with Sshuttle
+writing output... [ 11%] CPTS/Initial Access/SSH for Windows: plink.exe
+writing output... [ 11%] CPTS/Initial Access/Shells and Payloads
+writing output... [ 11%] CPTS/Initial Access/Socat Redirection with a Bind Shell
+writing output... [ 12%] CPTS/Initial Access/Socat Redirection with a Reverse Shell
+writing output... [ 12%] CPTS/Initial Access/Using the Metasploit Framework
+writing output... [ 13%] CPTS/Initial Access/Web Server Pivoting with Rpivot
+writing output... [ 13%] CPTS/Lateral Movement/Changing the user-agent to avoid detection
+writing output... [ 14%] CPTS/Lateral Movement/Creating a secure upload server using Nginx
+writing output... [ 14%] CPTS/Lateral Movement/File Transfers
+writing output... [ 15%] CPTS/Lateral Movement/Hunting for Files
+writing output... [ 15%] CPTS/Lateral Movement/Linux Pass the Ticket
+writing output... [ 16%] CPTS/Lateral Movement/Native File Transfer Powershell
+writing output... [ 16%] CPTS/Lateral Movement/Pivoting-Tunneling and Port Forwarding
+writing output... [ 16%] CPTS/Overview/Penetration Testing Overview
+writing output... [ 17%] CPTS/Overview/Penetration Testing Standards
+writing output... [ 17%] CPTS/Overview/Types of Penetration testing
+writing output... [ 18%] CPTS/Overview/Vulnerability Assessment
+writing output... [ 18%] CPTS/Reconnaissance/External Recon and Enumeration Principles
+writing output... [ 19%] CPTS/Reconnaissance/Footprinting
+writing output... [ 19%] CPTS/Reconnaissance/Host Enumeration
+writing output... [ 20%] CPTS/Reconnaissance/Information Gathering
+writing output... [ 20%] CPTS/Reconnaissance/Infrastructure Enumeration
+writing output... [ 21%] CPTS/Reconnaissance/Initial Enumeration of a AD Domain
+writing output... [ 21%] CPTS/Reconnaissance/Network Enumeration with nmap
+writing output... [ 21%] CPTS/Reconnaissance/Penetration Testing Overview
+writing output... [ 22%] CPTS/Reconnaissance/fingerprinting
+writing output... [ 22%] OFSEC/evasion/Evading EDR and AntiVirus
+writing output... [ 23%] OFSEC/recon/Active Scanning
+writing output... [ 23%] index
+writing output... [ 24%] tags/Active Directory
+writing output... [ 24%] tags/Application Testing
+writing output... [ 25%] tags/Attacking AD and NTDS.dit
+writing output... [ 25%] tags/Attacking LSASS
+writing output... [ 26%] tags/Attacking the SAM
+writing output... [ 26%] tags/Base64
+writing output... [ 26%] tags/Bash
+writing output... [ 27%] tags/Bitlocker
+writing output... [ 27%] tags/Black box Testing
+writing output... [ 28%] tags/CVSS
+writing output... [ 28%] tags/Certificates
+writing output... [ 29%] tags/Compliance Standards
+writing output... [ 29%] tags/DKIM
+writing output... [ 30%] tags/DMARC
+writing output... [ 30%] tags/DNS
+writing output... [ 31%] tags/Evasive testing
+writing output... [ 31%] tags/FTP
+writing output... [ 32%] tags/File Encryption Windows
+writing output... [ 32%] tags/File Encryption on Linux
+writing output... [ 32%] tags/Firefox Decrypt
+writing output... [ 33%] tags/Grey Box Testing
+writing output... [ 33%] tags/Hybrid evasive
+writing output... [ 34%] tags/IMAP-POP3
+writing output... [ 34%] tags/IPMP
+writing output... [ 35%] tags/Linux Mount
+writing output... [ 35%] tags/Linux local password attacks
+writing output... [ 36%] tags/MSSQL
+writing output... [ 36%] tags/Microsoft DREAD
+writing output... [ 37%] tags/MySQL
+writing output... [ 37%] tags/NFS
+writing output... [ 37%] tags/NIST
+writing output... [ 38%] tags/Network Testing
+writing output... [ 38%] tags/Non-evasive testing
+writing output... [ 39%] tags/O365spray
+writing output... [ 39%] tags/OSINT Framework
+writing output... [ 40%] tags/OSSTMM
+writing output... [ 40%] tags/OWASP
+writing output... [ 41%] tags/Oracle TNS
+writing output... [ 41%] tags/PTES
+writing output... [ 42%] tags/Physical Testing
+writing output... [ 42%] tags/PowerShell Web Uploads
+writing output... [ 42%] tags/Python Uploadserver
+writing output... [ 43%] tags/S3 Buckets
+writing output... [ 43%] tags/SMTP
+writing output... [ 44%] tags/SNMP
+writing output... [ 44%] tags/SQL Injection
+writing output... [ 45%] tags/SQL Injection Types
+writing output... [ 45%] tags/SQL Load file
+writing output... [ 46%] tags/Social Engineering Testing
+writing output... [ 46%] tags/Subverting SQL Query Logic
+writing output... [ 47%] tags/Symmetrical Encryption
+writing output... [ 47%] tags/Transfer with Code
+writing output... [ 47%] tags/Transferring File with GfxDownloadWrapper.exe
+writing output... [ 48%] tags/Understanding User Privileges
+writing output... [ 48%] tags/Using Bitsadmin to send and receive files
+writing output... [ 49%] tags/Using Certutil to download
+writing output... [ 49%] tags/Using OpenSSL to send and receive files
+writing output... [ 50%] tags/Virtual Hosts
+writing output... [ 50%] tags/WAF
+writing output... [ 51%] tags/WMI
+writing output... [ 51%] tags/Webdav
+writing output... [ 52%] tags/White Box Testing
+writing output... [ 52%] tags/Windows CMD
+writing output... [ 53%] tags/Windows Lateral Movement
+writing output... [ 53%] tags/Windows Local Password Attacks
+writing output... [ 53%] tags/Windows Pass The Hash
+writing output... [ 54%] tags/Windows Pass The Ticket
+writing output... [ 54%] tags/Windows Passwords
+writing output... [ 55%] tags/apache nutch
+writing output... [ 55%] tags/bettercap
+writing output... [ 56%] tags/bloodhound.py
+writing output... [ 56%] tags/builtwith
+writing output... [ 57%] tags/burp suite
+writing output... [ 57%] tags/cewl
+writing output... [ 58%] tags/chisel
+writing output... [ 58%] tags/crackmapexec
+writing output... [ 58%] tags/crawling
+writing output... [ 59%] tags/crowbar
+writing output... [ 59%] tags/crunch
+writing output... [ 60%] tags/cupp
+writing output... [ 60%] tags/dnsenum
+writing output... [ 61%] tags/dnsrecon
+writing output... [ 61%] tags/dnsx
+writing output... [ 62%] tags/enum4linux-ng
+writing output... [ 62%] tags/ettercap
+writing output... [ 63%] tags/evil-winrm
+writing output... [ 63%] tags/extent
+writing output... [ 63%] tags/fail2ban
+writing output... [ 64%] tags/ffuf
+writing output... [ 64%] tags/fierce
+writing output... [ 65%] tags/finalRecon
+writing output... [ 65%] tags/git
+writing output... [ 66%] tags/gobuster
+writing output... [ 66%] tags/hashcat
+writing output... [ 67%] tags/hippa
+writing output... [ 67%] tags/hydra
+writing output... [ 68%] tags/impacket
+writing output... [ 68%] tags/inveigh
+writing output... [ 68%] tags/invoke-TheHash
+writing output... [ 69%] tags/iso-27001
+writing output... [ 69%] tags/john
+writing output... [ 70%] tags/kerbrute
+writing output... [ 70%] tags/keytab
+writing output... [ 71%] tags/keytabextract.py
+writing output... [ 71%] tags/kwprocessor
+writing output... [ 72%] tags/laps
+writing output... [ 72%] tags/lazagne
+writing output... [ 73%] tags/linkatz
+writing output... [ 73%] tags/md5sum
+writing output... [ 74%] tags/medusa
+writing output... [ 74%] tags/metasploit
+writing output... [ 74%] tags/mimikatz
+writing output... [ 75%] tags/mitm6
+writing output... [ 75%] tags/msfvenom
+writing output... [ 76%] tags/nessus
+writing output... [ 76%] tags/net-webclient
+writing output... [ 77%] tags/netcat
+writing output... [ 77%] tags/netcraft
+writing output... [ 78%] tags/netstat
+writing output... [ 78%] tags/nikto
+writing output... [ 79%] tags/nmap
+writing output... [ 79%] tags/openssl
+writing output... [ 79%] tags/owasp-zap
+writing output... [ 80%] tags/pci-dss
+writing output... [ 80%] tags/pentest
+writing output... [ 81%] tags/powershell
+writing output... [ 81%] tags/princeprocessor
+writing output... [ 82%] tags/proxychains
+writing output... [ 82%] tags/psexec
+writing output... [ 83%] tags/pyenv
+writing output... [ 83%] tags/r-services
+writing output... [ 84%] tags/rdp
+writing output... [ 84%] tags/recon-ng
+writing output... [ 84%] tags/reconSpider
+writing output... [ 85%] tags/responder
+writing output... [ 85%] tags/rpc
+writing output... [ 86%] tags/rpcclient
+writing output... [ 86%] tags/rsync
+writing output... [ 87%] tags/rubeus
+writing output... [ 87%] tags/sc.exe
+writing output... [ 88%] tags/scrappy
+writing output... [ 88%] tags/shells
+writing output... [ 89%] tags/smb
+writing output... [ 89%] tags/smbmap
+writing output... [ 89%] tags/smbserver.py
+writing output... [ 90%] tags/smtp-user-enum
+writing output... [ 90%] tags/spf
+writing output... [ 91%] tags/spiderfoot
+writing output... [ 91%] tags/sqlcmd
+writing output... [ 92%] tags/sqsh
+writing output... [ 92%] tags/ssh
+writing output... [ 93%] tags/subbrute
+writing output... [ 93%] tags/subfinder
+writing output... [ 94%] tags/sudo
+writing output... [ 94%] tags/targetedKerberoast.py
+writing output... [ 95%] tags/theharvester
+writing output... [ 95%] tags/tscon.exe
+writing output... [ 95%] tags/ufw
+writing output... [ 96%] tags/wafw00f
+writing output... [ 96%] tags/wappalyzer
+writing output... [ 97%] tags/web shells
+writing output... [ 97%] tags/wget
+writing output... [ 98%] tags/whatweb
+writing output... [ 98%] tags/whois
+writing output... [ 99%] tags/winrm
+writing output... [ 99%] tags/wpscan
+writing output... [100%] tags/xfreerdp
+writing output... [100%] tags/xxd
+
+
+(tags/Virtual Hosts: line   33) broken    ../../tags/feroxbuster - 
+(tags/Virtual Hosts: line   35) broken    ../../tags/ffuf - 
+(tags/Virtual Hosts: line   31) broken    ../../tags/gobuster - 
+(      tags/MSSQL: line   26) broken    SERVICE:raw-latex - 
+(   tags/gobuster: line   42) broken    http://94.237.51.74:56507 - HTTPConnectionPool(host='94.237.51.74', port=56507): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x762438ce27a0>: Failed

