@@ -1,9 +1,9 @@
 PHP Reverse shell
 #####################
 
-Date: 2025-01-29 07:44:47
+Date: 2025-02-01 08:11:21
 
-Status: #draft
+Status: released version 0.1
 
 Tags: :ref:`Labs` 
 
@@ -85,8 +85,53 @@ Using MSFVenom to create a more complex payload
     nc -lnvp 1234
 
 - Execute the remote reverse shell by requesting the script : http://<HOST_IP>/hackable/uploads/reverse.php
-- You should see a connection on your nc -lnvp 1234 output
+- You should see a connection on your `nc -lnvp 1234` output.  From here you can browse the targets file system.
 
+Dealing with upload filters
+*****************************
+
+Applications may be configured to filter file types that can contain malicious content such as shell code.
+
+Blacklist filters
+=====================
+
+These type of filters disallow certain types of uploads such as `.sh` `.exe` to help protect the application.  Blacklist filters are common to applications that require a larger expected types of files (such as a file manager)
+
+Whitelist filters
+===================
+
+These type of filters are common on Web applications, since the upload feature may focus on a simple usecase such as uploading a picture.  So the filter may online except `.png|.jpg|.jpeg` etc.
+
+Bypassing filters 
+===================
+
+Client side Java script 
+--------------------------
+
+Changing the client code that executes in your browser.  For example: removing a the `CheckFileExtension` Javascript function that inspects the file extension.  This can be trivial to do, since you can right click on the 
+button and choose `inspect element` in Chrome and just highlighting the function and deleting it. 
+
+.. code-block:: console
+
+    <button type="submit" onClick="CheckFileExtension" >Upload</button>
+
+Server side filters
+---------------------
+
+A weak filter may allow you to trick the system into believing you are uploading a file it expects, with malicious content. Now you cannot just rename your file to the expected extension, since the system will
+treat it as such and not actually execute the code.
+
+Giving this function to filter unwanted files:
+
+.. code-block:: php
+
+    $fileName = basename($_FILES["uploadFile"]["name"]);
+
+    if (!preg_match('^.*\.(jpg|jpeg|png|gif)', $fileName)) {
+        echo "Only jpg|jpeg|png|gif are allowed";
+        die();
+
+The function checks that only image type extensions are uploaded.  The regex above is considered weak, since adding a double extension (ie: `webshell.png.php`) allows a webshell to be uploaded and executed.
 
 
 Mitigate this Attack Vector
@@ -96,7 +141,7 @@ The most effective way to protect against this type of attack:
 
 - Adding system style commands to the disable_function list
 - Restricting uploads when not necessary 
-- Checking file uploads for malicious content 
+- Checking file uploads for malicious content with strong testing techniques
 - Allowing only approved file extensions from being processed. 
 - Using a WAF 
   

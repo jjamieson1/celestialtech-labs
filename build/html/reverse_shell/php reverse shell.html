@@ -54,6 +54,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-payload">Create a payload</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#using-msfvenom-to-create-a-more-complex-payload">Using MSFVenom to create a more complex payload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dealing-with-upload-filters">Dealing with upload filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#blacklist-filters">Blacklist filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#whitelist-filters">Whitelist filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bypassing-filters">Bypassing filters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#client-side-java-script">Client side Java script</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#server-side-filters">Server side filters</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#mitigate-this-attack-vector">Mitigate this Attack Vector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a></li>
 </ul>
@@ -86,8 +96,8 @@
              
   <section id="php-reverse-shell">
 <h1>PHP Reverse shell<a class="headerlink" href="#php-reverse-shell" title="Link to this heading"></a></h1>
-<p>Date: 2025-01-29 07:44:47</p>
-<p>Status: #draft</p>
+<p>Date: 2025-02-01 08:11:21</p>
+<p>Status: released version 0.1</p>
 <p>Tags: <a class="reference internal" href="../index.html#labs"><span class="std std-ref">Labs</span></a></p>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
@@ -158,8 +168,45 @@ whoami, you can also use other system commands such as ls or cat as examples.</p
 </div>
 <ul class="simple">
 <li><p>Execute the remote reverse shell by requesting the script : <a class="reference external" href="http:/">http:/</a>/&lt;HOST_IP&gt;/hackable/uploads/reverse.php</p></li>
-<li><p>You should see a connection on your nc -lnvp 1234 output</p></li>
+<li><p>You should see a connection on your <cite>nc -lnvp 1234</cite> output.  From here you can browse the targets file system.</p></li>
 </ul>
+</section>
+<section id="dealing-with-upload-filters">
+<h2>Dealing with upload filters<a class="headerlink" href="#dealing-with-upload-filters" title="Link to this heading"></a></h2>
+<p>Applications may be configured to filter file types that can contain malicious content such as shell code.</p>
+<section id="blacklist-filters">
+<h3>Blacklist filters<a class="headerlink" href="#blacklist-filters" title="Link to this heading"></a></h3>
+<p>These type of filters disallow certain types of uploads such as <cite>.sh</cite> <cite>.exe</cite> to help protect the application.  Blacklist filters are common to applications that require a larger expected types of files (such as a file manager)</p>
+</section>
+<section id="whitelist-filters">
+<h3>Whitelist filters<a class="headerlink" href="#whitelist-filters" title="Link to this heading"></a></h3>
+<p>These type of filters are common on Web applications, since the upload feature may focus on a simple usecase such as uploading a picture.  So the filter may online except <cite>.png|.jpg|.jpeg</cite> etc.</p>
+</section>
+<section id="bypassing-filters">
+<h3>Bypassing filters<a class="headerlink" href="#bypassing-filters" title="Link to this heading"></a></h3>
+<section id="client-side-java-script">
+<h4>Client side Java script<a class="headerlink" href="#client-side-java-script" title="Link to this heading"></a></h4>
+<p>Changing the client code that executes in your browser.  For example: removing a the <cite>CheckFileExtension</cite> Javascript function that inspects the file extension.  This can be trivial to do, since you can right click on the
+button and choose <cite>inspect element</cite> in Chrome and just highlighting the function and deleting it.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">&lt;button type=&quot;submit&quot; onClick=&quot;CheckFileExtension&quot; &gt;Upload&lt;/button&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="server-side-filters">
+<h4>Server side filters<a class="headerlink" href="#server-side-filters" title="Link to this heading"></a></h4>
+<p>A weak filter may allow you to trick the system into believing you are uploading a file it expects, with malicious content. Now you cannot just rename your file to the expected extension, since the system will
+treat it as such and not actually execute the code.</p>
+<p>Giving this function to filter unwanted files:</p>
+<div class="highlight-php notranslate"><div class="highlight"><pre><span></span><span class="x">$fileName = basename($_FILES[&quot;uploadFile&quot;][&quot;name&quot;]);</span>
+
+<span class="x">if (!preg_match(&#39;^.*\.(jpg|jpeg|png|gif)&#39;, $fileName)) {</span>
+<span class="x">    echo &quot;Only jpg|jpeg|png|gif are allowed&quot;;</span>
+<span class="x">    die();</span>
+</pre></div>
+</div>
+<p>The function checks that only image type extensions are uploaded.  The regex above is considered weak, since adding a double extension (ie: <cite>webshell.png.php</cite>) allows a webshell to be uploaded and executed.</p>
+</section>
+</section>
 </section>
 <section id="mitigate-this-attack-vector">
 <h2>Mitigate this Attack Vector<a class="headerlink" href="#mitigate-this-attack-vector" title="Link to this heading"></a></h2>
@@ -167,7 +214,7 @@ whoami, you can also use other system commands such as ls or cat as examples.</p
 <ul class="simple">
 <li><p>Adding system style commands to the disable_function list</p></li>
 <li><p>Restricting uploads when not necessary</p></li>
-<li><p>Checking file uploads for malicious content</p></li>
+<li><p>Checking file uploads for malicious content with strong testing techniques</p></li>
 <li><p>Allowing only approved file extensions from being processed.</p></li>
 <li><p>Using a WAF</p></li>
 </ul>
